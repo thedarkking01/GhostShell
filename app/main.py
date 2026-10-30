@@ -1,3 +1,4 @@
+import httpx
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
@@ -27,7 +28,6 @@ async def chat(req: ChatRequest):
 
 @app.get("/health")
 async def health():
-    import httpx
     try:
         async with httpx.AsyncClient(timeout=3) as client:
             await client.get("http://localhost:11434")
